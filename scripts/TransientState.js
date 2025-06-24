@@ -16,18 +16,26 @@ export const setSide = (sideChoice) => {
     transientState.sideId = sideChoice;
 }
 
-export const purchase = async () => {
-    const postOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(transientState)
-    }
+export async function purchase() {
+    const { entreeId, veggieId, sideId } = getTransientState();
 
-    await fetch("http://localhost:8088/purchases", postOptions)
-    const customEvent = new CustomEvent("newOrderCreated")
-    document.dispatchEvent(customEvent)
+    if (entreeId && veggieId && sideId) {
+        const postOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(transientState)
+        }
+
+        await fetch("http://localhost:8088/purchases", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ entreeId, veggieId, sideId, total })
+        })
+        const customEvent = new CustomEvent("newOrderCreated")
+        document.dispatchEvent(customEvent)
+    }
 }
 
 export function getTransientState() {
