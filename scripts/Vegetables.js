@@ -13,10 +13,10 @@ export const Veggies = async () => {
         </label>
     `).join("");
 
-    document.querySelectorAll(".veggie-radio").forEach(input => {
-        input.addEventListener("change", (event) => {
+    document.addEventListener("change", (event) => {
+        if (event.target.name === "veggie") {
             setVeggie(parseInt(event.target.value))
-        })
+        }
     })
 
     return `

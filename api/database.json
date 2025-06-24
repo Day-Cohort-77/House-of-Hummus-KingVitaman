@@ -131,5 +131,23 @@
     }
   ],
   "purchases": [
+    {
+      "entreeId": 2,
+      "vegetableId": 5,
+      "sideId": 5,
+      "id": 1
+    },
+    {
+      "entreeId": 1,
+      "veggieId": 1,
+      "sideId": 1,
+      "id": 2
+    },
+    {
+      "entreeId": 1,
+      "veggieId": 1,
+      "sideId": 1,
+      "id": 3
+    }
   ]
 }

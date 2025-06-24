@@ -13,10 +13,10 @@ export const Sides = async () => {
         </label>
     `).join("")
 
-    document.querySelectorAll(".side-radio").forEach(input => {
-        input.addEventListener("change", (event) => {
+    document.addEventListener("change", (event) => {
+        if (event.target.name === "side") {
             setSide(parseInt(event.target.value))
-        })
+        }
     })
 
     return `
