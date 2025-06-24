@@ -1,12 +1,12 @@
 import { purchase } from "./TransientState.js"
 
-const handleSubmission = async (clickEvent) => {
-    if (clickEvent.target.id === "purchase") {
-        await purchase(clickEvent.target.value)
-    }
+const handleOrderSubmission = (clickEvent) => {
+   if (clickEvent.target.id === "purchase") {
+       purchase();
+   }
 }
 
 export const button = () => {
-    document.addEventListener("click", handleSubmission)
+    document.addEventListener("click", handleOrderSubmission)
     return `<button id="purchase">Purchase Combo</button>`
 }

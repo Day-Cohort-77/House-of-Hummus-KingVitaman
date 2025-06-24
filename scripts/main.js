@@ -9,11 +9,10 @@ const renderAllHTML = async () => {
 
 renderAllHTML()
 
-// Attach the click listener ONCE here
-mainContainer.addEventListener("click", async (event) => {
+mainContainer.addEventListener("click", (event) => {
     if (event.target.id === "purchase") {
-        await purchase()
-        renderAllHTML()
+        purchase()
     }
 })
+
 
