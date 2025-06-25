@@ -17,17 +17,17 @@ export const setSide = (sideChoice) => {
 }
 
 export const purchase = async () => {
-
-    const orderButton = {
+    if (!transientState.entreeId || !transientState.vegetableId || !transientState.sideId) {
+        alert("Please select an entree, vegetable, and side dish before purchasing.");
+        return;
+    }
+    await fetch("http://localhost:8088/purchases", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(transientState)
-    }
-
-    const response = await fetch("http://localhost:8088/purchases", orderButton)
+    })
     const newOrderEvent = new CustomEvent("newOrderCreated")
     document.dispatchEvent(newOrderEvent)
-
 }

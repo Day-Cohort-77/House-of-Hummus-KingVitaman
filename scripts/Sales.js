@@ -3,7 +3,7 @@ export const Sales = async () => {
 
     // Generate HTML for each sale
     let salesHTML = sales.map(sale => {
-        const totalPrice = (sale.entree.price || 0) + (sale.vegetable.price || 0) + (sale.side.price || 0)
+        const totalPrice = sale.entree.price + sale.vegetable.price + sale.side.price
         return `
         <div class="sale">
             <strong>Receipts #${sale.id}</strong>: $${totalPrice.toFixed(2)}<br>
