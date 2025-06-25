@@ -1,23 +1,19 @@
-export const Sales = async function() {
-    // Fetch purchases from your API
-    const response = await fetch("http://localhost:8088/purchases")
-    const purchases = await response.json()
+export const Sales = async () => {
+    const sales = await fetch("http://localhost:8088/purchases?_expand=entree&_expand=vegetable&_expand=side").then(res => res.json())
 
-    // Build the HTML string using a basic for loop
-    let salesHTML = ""
-    for (let i = 0; i < purchases.length; i++) {
-        let purchase = purchases[i]
-        let total = "N/A"
-        if (typeof purchase.total === "number") {
-            total = purchase.total.toFixed(2)
-        }
-        salesHTML += "<div>Receipt #" + purchase.id + " = $" + total + "</div>"
-    }
+    // Generate HTML for each sale
+    let salesHTML = sales.map(sale => {
+        const totalPrice = (sale.entree.price || 0) + (sale.vegetable.price || 0) + (sale.side.price || 0)
+        return `
+        <div class="sale">
+            <strong>Receipts #${sale.id}</strong>: $${totalPrice.toFixed(2)}<br>
+        </div>
+        `
+    }).join("")
 
-    return (
-        "<section>" +
-            "<h2>Monthly Sales</h2>" +
-            salesHTML +
-        "</section>"
-    )
+    return `
+        <section class="sales">
+            ${salesHTML}
+        </section>
+    `
 }

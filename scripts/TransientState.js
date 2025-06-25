@@ -1,6 +1,6 @@
 const transientState = {
     entreeId: 0,
-    veggieId: 0,
+    vegetableId: 0,
     sideId: 0
 }
 
@@ -8,36 +8,26 @@ export const setEntree = (entreeChoice) => {
     transientState.entreeId = entreeChoice;
 }
 
-export const setVeggie = (veggieChoice) => {
-    transientState.veggieId = veggieChoice;
+export const setVegetable = (vegetableChoice) => {
+    transientState.vegetableId = vegetableChoice;
 }
 
 export const setSide = (sideChoice) => {
     transientState.sideId = sideChoice;
 }
 
-export async function purchase() {
-    const { entreeId, veggieId, sideId } = getTransientState();
+export const purchase = async () => {
 
-    if (entreeId && veggieId && sideId) {
-        const postOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(transientState)
-        }
-
-        await fetch("http://localhost:8088/purchases", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ entreeId, veggieId, sideId, total })
-        })
-        const customEvent = new CustomEvent("newOrderCreated")
-        document.dispatchEvent(customEvent)
+    const orderButton = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(transientState)
     }
-}
 
-export function getTransientState() {
-    return { ...transientState }
+    const response = await fetch("http://localhost:8088/purchases", orderButton)
+    const newOrderEvent = new CustomEvent("newOrderCreated")
+    document.dispatchEvent(newOrderEvent)
+
 }
