@@ -7,3 +7,8 @@ const renderAllHTML = async () => {
 }
 
 renderAllHTML()
+
+// Listen for the custom event and re-render when a new order is created
+document.addEventListener("newOrderCreated", () => {
+    renderAllHTML()
+})

@@ -48,3 +48,78 @@ ul {
     text-align: center;
     margin: 1rem 0 3rem 2rem;
 }
+
+/* --- Option List Styling --- */
+.option-list {
+    list-style: decimal inside;
+    padding: 0 0 0 1.5rem;
+    margin: 0;
+}
+
+.option-list li {
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.4rem;
+    transition: background 0.2s;
+    position: relative;
+}
+
+.option-list li:hover,
+.option-list input[type="radio"]:focus + .custom-radio {
+    background: #f3eaff;
+}
+
+label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+input[type="radio"] {
+    appearance: none;
+    width: 1.2em;
+    height: 1.2em;
+    border: 2px solid #6f48e3;
+    border-radius: 50%;
+    margin-right: 0.7em;
+    outline: none;
+    transition: border 0.2s;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+input[type="radio"]:checked {
+    border: 6px solid #6f48e3;
+    background: #e6dcff;
+}
+
+input[type="radio"]:hover {
+    border-color: #a48cf0;
+}
+
+.custom-radio {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    margin-right: 0.7em;
+    background: #fff;
+    border: 2px solid #6f48e3;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+input[type="radio"]:checked + .custom-radio {
+    background: #6f48e3;
+    border-color: #6f48e3;
+}
+
+input[type="radio"]:focus + .custom-radio {
+    box-shadow: 0 0 0 2px #a48cf0;
+}

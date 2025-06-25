@@ -1,4 +1,4 @@
-import { setVeggie } from "./TransientState.js"
+import { setVegetable } from "./TransientState.js"
 
 export const Veggies = async () => {
     // Fetch veggies from your API
@@ -15,7 +15,7 @@ export const Veggies = async () => {
 
     document.addEventListener("change", (event) => {
         if (event.target.name === "veggie") {
-            setVeggie(parseInt(event.target.value))
+            setVegetable(parseInt(event.target.value))
         }
     })
 

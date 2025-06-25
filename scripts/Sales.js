@@ -6,14 +6,13 @@ export const Sales = async () => {
         const totalPrice = (sale.entree.price || 0) + (sale.vegetable.price || 0) + (sale.side.price || 0)
         return `
         <div class="sale">
-            <strong>Purchase #${sale.id}</strong>: $${totalPrice.toFixed(2)}<br>
+            <strong>Receipts #${sale.id}</strong>: $${totalPrice.toFixed(2)}<br>
         </div>
         `
     }).join("")
 
     return `
         <section class="sales">
-            <h2>Previous Purchases</h2>
             ${salesHTML}
         </section>
     `
